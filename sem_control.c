@@ -52,13 +52,15 @@ int main(int argc, char *argv[]) {
 
     fd = open("textfile",O_CREAT|O_TRUNC,0644);
     printf("file created\n");
+    close(fd);
   }
 
   if(!strncmp(argv[1], "-v", 30)){
-    open("textfile", O_RDONLY);
-    char *buff;
+    fd = open("textfile", O_RDONLY);
+    char buff[100];
     read(fd, buff, 500);
     printf("the story so far:\n %s\n", buff);
+    close(fd);
  }
 
   shmdt(data);
