@@ -50,15 +50,16 @@ int main(int argc, char *argv[]) {
     data = shmat(shmd, 0, 0);
     printf("shared memory created\n");
 
-    fd = open("textfile",O_CREAT|O_TRUNC|O_EXCL,0644);
+    fd = open("textfile",O_CREAT|O_TRUNC,0644);
     printf("file created\n");
   }
 
   if(!strncmp(argv[1], "-v", 30)){
+    open("textfile", O_RDONLY);
     char *buff;
     read(fd, buff, 500);
     printf("the story so far:\n %s\n", buff);
-  }
+ }
 
   shmdt(data);
 
